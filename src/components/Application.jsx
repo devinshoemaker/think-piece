@@ -31,8 +31,11 @@ class Application extends Component {
   };
 
   handleRemove = async id => {
+    await firestore.doc(`posts/${id}`).delete();
+
     const allPosts = this.state.posts;
     const posts = allPosts.filter(post => post.id !== id);
+    
     this.setState({ posts });
   }
 
